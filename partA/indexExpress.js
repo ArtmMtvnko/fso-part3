@@ -27,6 +27,18 @@ app.get('/api/notes', (request, response) => {
     response.json(notes)
 })
 
+app.get('/api/notes/:id', (request, response) => {
+    const id = Number(request.params.id)
+    const note = notes.find(note => note.id === id)
+
+    if (note) {
+        response.json(note)
+    } else {
+        // response.statusMessage = 'some aboba text'
+        response.status(404).end('some other aboba text')
+    }
+})
+
 const PORT = 3001
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}\nLink: http://localhost:${PORT}`)
