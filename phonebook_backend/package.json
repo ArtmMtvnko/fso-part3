@@ -1,0 +1,19 @@
+{
+  "name": "phonebook_backend",
+  "version": "1.0.0",
+  "description": "first backend acording to fullstack open course",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ArtmMtvnko"
+  },
+  "keywords": [
+    "backend",
+    "nodejs"
+  ],
+  "author": "Artem Matviienko",
+  "license": "ISC"
+}
