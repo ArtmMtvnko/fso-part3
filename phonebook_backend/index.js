@@ -51,7 +51,9 @@ app.get('/api/persons/:id', (request, response) => {
     if (entrie) {
         response.json(entrie)
     } else {
-        response.status(404).end('Entrie not found')
+        response.status(404).json({
+            error: 'Entrie not found'
+        })
     }
 })
 
@@ -65,12 +67,25 @@ app.delete('/api/persons/:id', (request, response) => {
 
 const generateId = () => Math.floor(Math.random() * 1000000000000000)
 
+const isNameUnique = (name) => {
+    const person = persons.find(person => person.name === name)
+    
+    return persons.find(person => person.name === name)
+        ? false
+        : true
+}
+
 app.post('/api/persons', (request, response) => {
     const body = request.body
 
     if (!body.name || !body.number) {
         return response.status(400).json({
             error: 'content missing'
+        })
+    }
+    if (!isNameUnique(body.name)) {
+        return response.status(400).json({
+            error: 'name must be unique'
         })
     }
 
