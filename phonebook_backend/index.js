@@ -28,6 +28,19 @@ const persons = [
 
 app.get('/', (request, response) => response.send('<h1>Phonebook Backend!</h1>'))
 
+app.get('/info', (request, response) => {
+    const personsCount = persons.length
+    const currentDate = new Date()
+    
+    const result = 
+    `
+    <p>Phonebook has info for ${personsCount} people</p>
+    <p>${currentDate}</p>
+    `
+
+    response.send(result)
+})
+
 app.get('/api/persons', (request, response) => response.json(persons))
 
 const PORT = 3001
