@@ -4,6 +4,8 @@
   "description": "node js training",
   "main": "index.js",
   "scripts": {
+    "build:ui": "@powershell Remove-Item -Recurse -Force dist && cd ../../fso-part2/part2-1/ && npm run build && @powershell Copy-Item dist -Recurse ../../fso-part3/partA",
+    "deploy:full": "git add . && git commit -m uibuild && git push",
     "start": "node indexExpress.js",
     "dev": "nodemon indexExpress.js",
     "test": "echo \"Error: no test specified\" && exit 1"
