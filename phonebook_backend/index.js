@@ -25,6 +25,8 @@ let persons = [
     }
 ]
 
+app.use(express.static('dist'))
+
 morgan.token('body', (req, res) => {
     return JSON.stringify(req.body)
 })
