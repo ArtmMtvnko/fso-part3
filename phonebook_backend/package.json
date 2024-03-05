@@ -4,6 +4,8 @@
   "description": "first backend acording to fullstack open course",
   "main": "index.js",
   "scripts": {
+    "build:ui": "@powershell Remove-Item -Recurse -Force dist && cd ../../fso-part2/phonebook/ && npm run build && @powershell Copy-Item dist -Recurse ../../fso-part3/phonebook_backend",
+    "deploy:full": "git add . && git commit -m uibuild && git push",
     "start": "node index.js",
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
