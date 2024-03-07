@@ -20,12 +20,19 @@ const entrieSchema = new mongoose.Schema({
 
 const Entrie = mongoose.model('Entrie', entrieSchema)
 
-const entrie = new Entrie({
-    name: 'test',
-    number: '302-3-194'
-})
-
-entrie.save().then(result => {
-    console.log('Entrie saved!')
-    mongoose.connection.close()
-})
+if (process.argv.length === 3) {
+    Entrie.find({}).then(result => {
+        console.log(result)
+        mongoose.connection.close()
+    })
+} else {
+    const entrie = new Entrie({
+        name: process.argv[3],
+        number: process.argv[4]
+    })
+    
+    entrie.save().then(result => {
+        console.log('Entrie saved!')
+        mongoose.connection.close()
+    })
+}
