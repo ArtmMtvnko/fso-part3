@@ -22,7 +22,8 @@ const Entrie = mongoose.model('Entrie', entrieSchema)
 
 if (process.argv.length === 3) {
     Entrie.find({}).then(result => {
-        console.log(result)
+        console.log('Phonebook:')
+        result.forEach(entrie => console.log(entrie.name, entrie.number))
         mongoose.connection.close()
     })
 } else {
