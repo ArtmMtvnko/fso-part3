@@ -1,3 +1,4 @@
+// now it is useless file
 const mongoose = require('mongoose')
 
 if (process.argv.length < 3) {
