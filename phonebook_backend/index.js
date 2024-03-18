@@ -49,9 +49,8 @@ app.get('/api/persons/:id', (request, response) => {
 
 app.delete('/api/persons/:id', (request, response) => {
     const id = Number(request.params.id)
-
-    Person.deleteOne({ name: request.body.name })
-        .then(result => response.status(204).end())
+    Person.deleteOne({ _id: request.params.id })
+        .then(result => response.json(result))
         .catch(error => response.status(404).end())
 })
 
@@ -77,8 +76,13 @@ app.post('/api/persons', (request, response) => {
         number: body.number
     })
 
-    person.save().then(result => console.log('Entrie saved!'))
+    person.save().then(result => response.json(result))
 })
+
+const unknownEndpoint = (request, response) => 
+    response.status(404).send({ error: 'unknown endpoint' })
+
+app.use(unknownEndpoint)
 
 const PORT = process.env.PORT
 
