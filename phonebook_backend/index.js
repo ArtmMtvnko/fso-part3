@@ -47,11 +47,15 @@ app.get('/api/persons/:id', (request, response) => {
         })
 })
 
-app.delete('/api/persons/:id', (request, response) => {
-    const id = Number(request.params.id)
-    Person.deleteOne({ _id: request.params.id })
-        .then(result => response.json(result))
-        .catch(error => response.status(404).end())
+app.delete('/api/persons/:id', (request, response, next) => {
+    Person.findByIdAndDelete(request.params.id)
+        .then(result => response.status(204).end())
+        .then(error => next(error))
+
+    // Alternative way:
+    // Person.deleteOne({ _id: request.params.id })
+    //     .then(result => response.json(result))
+    //     .catch(error => response.status(404).end())
 })
 
 // const isNameUnique = (name) => {
