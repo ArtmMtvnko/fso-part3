@@ -27,7 +27,7 @@ app.get('/api/notes', (request, response) => {
     })
 })
 
-app.get('/api/notes/:id', (request, response) => {
+app.get('/api/notes/:id', (request, response, next) => {
     Note.findById(request.params.id)
         .then(note => {
             if (note) {
@@ -36,7 +36,10 @@ app.get('/api/notes/:id', (request, response) => {
                 response.status(404).end()
             }
         })
-        .catch(error => next(error))
+        .catch(error => {
+            console.log(error.name)
+            next(error)
+        })
 })
 
 app.delete('/api/notes/:id', (request, response) => {
@@ -81,7 +84,7 @@ const errorHandler = (error, request, response, next) => {
     next(error)
 }
 
-app.use(errorHandler)
+app.use(errorHandler) // Use in very end of routes
 
 const PORT = process.env.PORT
 app.listen(PORT, () => {
