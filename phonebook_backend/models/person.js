@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const password = process.argv[2]
+// const password = process.argv[2]
 
 const uri = process.env.MONGODB_URI
 
@@ -38,4 +38,4 @@ personSchema.set('toJSON', {
 
 const Person = mongoose.model('Person', personSchema)
 
-module.exports = Person 
+module.exports = Person

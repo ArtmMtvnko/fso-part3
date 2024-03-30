@@ -22,13 +22,13 @@ app.get('/info', (request, response) => {
     Person.find({}).then(persons => {
         const personsCount = persons.length
         const currentDate = new Date()
-        
-        const result = 
+
+        const result =
         `
         <p>Phonebook has info for ${personsCount} people</p>
         <p>${currentDate}</p>
         `
-    
+
         response.send(result)
     })
 })
@@ -60,7 +60,7 @@ app.delete('/api/persons/:id', (request, response, next) => {
 
 // const isNameUnique = (name) => {
 //     const person = persons.find(person => person.name === name)
-    
+
 //     return persons.find(person => person.name === name)
 //         ? false
 //         : true
@@ -94,15 +94,15 @@ app.put('/api/persons/:id', (request, response, next) => {
     }
 
     Person.findByIdAndUpdate(
-            request.params.id,
-            person,
-            { new: true, runValidators: true, context: 'query' }
-        )
+        request.params.id,
+        person,
+        { new: true, runValidators: true, context: 'query' }
+    )
         .then(updatedPerson => response.json(updatedPerson))
         .catch(error => next(error))
 })
 
-const unknownEndpoint = (request, response) => 
+const unknownEndpoint = (request, response) =>
     response.status(404).send({ error: 'unknown endpoint' })
 
 app.use(unknownEndpoint)
