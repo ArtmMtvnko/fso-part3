@@ -58,7 +58,7 @@ app.post('/api/notes', (request, response, next) => {
             error: 'content missing'
         })
     }
-    
+
     const note = new Note({
         content: body.content,
         important: Boolean(body.important) || false,
@@ -75,10 +75,10 @@ app.put('/api/notes/:id', (request, response, next) => {
     const { content, important } = request.body
 
     Note.findByIdAndUpdate(
-            request.params.id,
-            { content, important },
-            { new: true, runValidators: true, context: 'query' }
-        )
+        request.params.id,
+        { content, important },
+        { new: true, runValidators: true, context: 'query' }
+    )
         .then(updatedNote => response.json(updatedNote))
         .catch(error => next(error))
 })

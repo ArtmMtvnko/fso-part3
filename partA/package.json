@@ -8,7 +8,8 @@
     "deploy:full": "git add . && git commit -m uibuild && git push",
     "start": "node indexExpress.js",
     "dev": "nodemon indexExpress.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ."
   },
   "keywords": [
     "node",
@@ -25,6 +26,8 @@
     "mongoose": "^8.2.1"
   },
   "devDependencies": {
+    "@stylistic/eslint-plugin-js": "^1.7.0",
+    "eslint": "^8.57.0",
     "nodemon": "^3.1.0"
   }
 }

@@ -20,7 +20,7 @@ const noteSchema = new mongoose.Schema({
 
 const Note = mongoose.model('Note', noteSchema)
 
-Note.find({important: false}).then(result => {
+Note.find({ important: false }).then(result => {
     console.log(result)
     mongoose.connection.close()
 })
